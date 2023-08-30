@@ -1,0 +1,10 @@
+plugins {
+  id "com.diffplug.spotless"
+}
+
+spotless {
+  kotlin {
+    targetExclude("build/generated/**/*.kt")
+    ktlint(libs.versions.ktlint.get())
+  }
+}

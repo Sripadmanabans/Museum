@@ -1,0 +1,132 @@
+name: CD
+
+on:
+  push:
+    branches:
+      - develop
+
+concurrency:
+  group: ${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
+env:
+  ORG_GRADLE_PROJECT_PIXELS_KEY_ALIAS: ${{ secrets.ORG_GRADLE_PROJECT_PIXELS_KEY_ALIAS }}
+  ORG_GRADLE_PROJECT_PIXELS_KEY_PASSWORD: ${{ secrets.ORG_GRADLE_PROJECT_PIXELS_KEY_PASSWORD }}
+  ORG_GRADLE_PROJECT_PIXELS_STORE_PASSWORD: ${{ secrets.ORG_GRADLE_PROJECT_PIXELS_STORE_PASSWORD }}
+  ORG_GRADLE_PROJECT_PIXELS_CLIENT_ID: ${{ secrets.ORG_GRADLE_PROJECT_PIXELS_CLIENT_ID }}
+
+jobs:
+  build:
+    name: Build
+    runs-on: macos-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 20
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: 20
+
+      - name: Bundle with gradle — make sure everything builds
+        uses: gradle/gradle-build-action@v2
+        id: gradle
+        with:
+          arguments: |
+            bundle --stacktrace --scan
+          cache-read-only: false
+
+      - name: Uploading artifacts
+        if: success()
+        uses: actions/upload-artifact@v3
+        with:
+          name: bundle-${{ github.sha }}
+          path: |
+            app/build/**/app-release.aab
+            app/build/**/mapping.txt
+
+  # Runs all check tasks in parallel.
+  check:
+    name: Check
+    needs: build
+    runs-on: macos-latest
+    timeout-minutes: 10
+    strategy:
+      # Run all checks, even if some fail.
+      fail-fast: false
+      matrix:
+        gradle-task:
+          # Unit tests
+          - test
+          - lint
+          - spotlessCheck
+          - detektMain
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 20
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: 20
+
+      - name: Check with Gradle
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: |
+            ${{ matrix.gradle-task }} --stacktrace
+          cache-read-only: true
+
+      # Report as Github Pull Request Check.
+      - name: Publish Test Report
+        uses: mikepenz/action-junit-report@v3
+        if: matrix.gradle-task == 'test'
+        with:
+          report_paths: '**/build/test-results/test*/TEST-*.xml'
+
+  instrumentation-tests:
+    name: Instrumentation tests
+    needs: build
+    runs-on: macos-latest
+    timeout-minutes: 30
+    strategy:
+      # Allow tests to continue on other devices if they fail on one device.
+      fail-fast: false
+      matrix:
+        target: [ google_apis ]
+        api-level: [ 33 ]
+        arch: [ x86_64 ]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 20
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: 20
+
+      - name: Gradle cache
+        uses: gradle/gradle-build-action@v2
+
+      ## Actual task.
+      - name: Instrumentation Tests
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: ${{ matrix.api-level }}
+          target: ${{ matrix.target }}
+          arch: ${{ matrix.arch }}
+          force-avd-creation: false
+          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          disable-animations: true
+          script: ./gradlew connectedCheck --stacktrace
+
+      ## Uploading test data.
+      - name: Upload results
+        uses: actions/upload-artifact@v3
+        with:
+          name: instrumentation-test-results-${{ matrix.api-level }}
+          path: ./**/build/reports/androidTests/connected/**
