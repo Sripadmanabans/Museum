@@ -1,0 +1,45 @@
+plugins {
+  id "de.mannodermaus.android-junit5"
+}
+
+android {
+
+  defaultConfig {
+    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    testInstrumentationRunnerArguments clearPackageData: "true"
+    testInstrumentationRunnerArguments runnerBuilder: "de.mannodermaus.junit5.AndroidJUnit5Builder"
+  }
+
+  testOptions {
+    execution 'ANDROIDX_TEST_ORCHESTRATOR'
+    unitTests {
+      returnDefaultValues = true
+    }
+    unitTests.all { useJUnitPlatform() }
+  }
+}
+
+dependencies {
+  implementation libs.androidx.tracing
+
+  androidTestImplementation libs.junit5.api
+  androidTestImplementation libs.junit5.params
+
+  androidTestImplementation libs.androidx.test.espresso.core
+  androidTestImplementation libs.androidx.junit5.test.core
+  androidTestRuntimeOnly libs.androidx.junit5.test.runner
+
+  androidTestImplementation libs.androidx.compose.ui.test.core
+  androidTestImplementation libs.androidx.compose.ui.test.junit
+  androidTestImplementation libs.androidx.compose.ui.test.manifest
+
+  androidTestImplementation libs.androidx.test.runnner
+  androidTestUtil libs.androidx.test.orchestrator
+}
+
+// TODO same thing for instrumentation tests: https://issuetracker.google.com/issues/37056080
+//tasks.withType(AndroidTestTask) {
+//  testLogging {
+//    events "skipped", "failed", "passed"
+//  }
+//}

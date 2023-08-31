@@ -1,0 +1,36 @@
+buildscript {
+  ext.buildConfig = [
+    "compileSdk": 34,
+    "minSdk"    : 31,
+    "targetSdk" : 34,
+
+    "version"   : [
+      "major": 1,
+      "minor": 0,
+      "patch": 0,
+      "build": 0,
+    ],
+  ]
+  ext.buildConfig.version["name"] = "${buildConfig.version.major}.${buildConfig.version.minor}.${buildConfig.version.patch}"
+  ext.buildConfig.version["fullName"] = "${buildConfig.version.name}.${buildConfig.version.build}"
+  ext.buildConfig.version["code"] = buildConfig.version.major * 1000000 + buildConfig.version.minor * 10000 + buildConfig.version.patch * 100 + buildConfig.version.build
+}
+
+plugins {
+  alias libs.plugins.android.application apply false
+  alias libs.plugins.android.library apply false
+  alias libs.plugins.android.junit5 apply false
+
+  alias libs.plugins.compose apply false
+
+  alias libs.plugins.detekt apply false
+
+  alias libs.plugins.kotlin.android apply false
+
+  alias libs.plugins.spotless apply false
+}
+
+@SuppressWarnings('unused')
+def propOrEmpty(String name) {
+  return hasProperty(name) ? getProperty(name) : ''
+}

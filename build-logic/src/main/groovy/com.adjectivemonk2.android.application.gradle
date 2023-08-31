@@ -1,0 +1,100 @@
+plugins {
+  id "com.android.application"
+  id "org.jetbrains.kotlin.android"
+  id "com.adjectivemonk2.detekt"
+  id "com.adjectivemonk2.spotless"
+}
+
+android {
+  buildFeatures {
+    buildConfig true
+    compose true
+  }
+
+  buildTypes {
+    debug {
+      applicationIdSuffix ".debug"
+    }
+    release {
+      if (file("keystore/upload.keystore").exists()) {
+        signingConfig signingConfigs.upload
+      } else {
+        signingConfig signingConfigs.debug
+      }
+
+      minifyEnabled true
+      shrinkResources true
+    }
+  }
+
+  compileOptions {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+  }
+
+  compileSdkVersion buildConfig.compileSdk
+
+  composeOptions {
+    kotlinCompilerExtensionVersion libs.versions.compose.get()
+  }
+
+  defaultConfig {
+    minSdkVersion buildConfig.minSdk
+    targetSdkVersion buildConfig.targetSdk
+    versionCode buildConfig.version.code
+    versionName buildConfig.version.name
+    proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+  }
+
+  kotlinOptions {
+    allWarningsAsErrors = true
+
+    freeCompilerArgs += "-XXLanguage:+NewInference"
+    freeCompilerArgs += "-progressive"
+    freeCompilerArgs += "-Xexplicit-api=strict"
+    def kotlinVersion = libs.versions.kotlin.get()
+    def composeKotlinVersion = libs.versions.composeKotlin.get()
+    def suppressComposeCompatibility = kotlinVersion != composeKotlinVersion
+    if (suppressComposeCompatibility) {
+      println("Suppressing app level compiler kotlin compiler check!!")
+      freeCompilerArgs += [
+        "-P",
+        "plugin:androidx.compose.compiler.plugins.kotlin:suppressKotlinVersionCompatibilityCheck=" +
+          "$kotlinVersion"
+      ]
+    }
+  }
+
+  namespace "com.adjectivemonk2.museum"
+
+  packagingOptions {
+    resources {
+      exclude "META-INF/AL2.0"
+      exclude "META-INF/LGPL2.1"
+      exclude "META-INF/LICENSE*"
+      exclude "META-INF/versions/9/previous-compilation-data.bin"
+    }
+  }
+
+  signingConfigs {
+    debug {
+      storeFile file("keystore/debug.keystore")
+      storePassword "museum"
+      keyAlias "museum"
+      keyPassword "museum"
+    }
+
+    if (file("keystore/upload.keystore").exists()) {
+      upload {
+        storeFile file("keystore/upload.keystore")
+        storePassword propOrEmpty("MUSEUM_STORE_PASSWORD")
+        keyAlias propOrEmpty("MUSEUM_KEY_ALIAS")
+        keyPassword propOrEmpty("MUSEUM_KEY_PASSWORD")
+      }
+    }
+  }
+}
+
+kotlin {
+  jvmToolchain(17)
+}
