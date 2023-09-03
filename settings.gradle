@@ -25,7 +25,6 @@ gradleEnterprise {
 }
 
 dependencyResolutionManagement {
-  repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
   repositories {
     google()
     mavenCentral()
@@ -38,4 +37,15 @@ dependencyResolutionManagement {
 enableFeaturePreview('TYPESAFE_PROJECT_ACCESSORS')
 
 rootProject.name = "Museum"
+
+include ':androidui'
 include ':app'
+include ':launcher'
+include ':presenter:gallery'
+include ':presenter-treehouse:gallery'
+include ':schema'
+include ':schema:compose'
+include ':schema:compose:protocol'
+include ':schema:widget'
+include ':schema:widget:protocol'
+include ':schema:testing'

@@ -1,0 +1,32 @@
+plugins {
+  id "com.adjectivemonk2.kotlin.multiplatform"
+  id "app.cash.redwood.generator.compose"
+}
+
+archivesBaseName = 'schema-compose'
+
+kotlin {
+
+  js(IR) {
+    browser()
+  }
+
+  jvm {
+    jvmToolchain(17)
+  }
+
+  sourceSets {
+    commonMain {
+      dependencies {
+        api libs.redwood.layout.compose
+        api libs.redwood.lazylayout.compose
+        api projects.schema.widget
+      }
+    }
+  }
+}
+
+redwoodSchema {
+  source = projects.schema
+  type = 'com.adjectivemonk2.museum.Museum'
+}

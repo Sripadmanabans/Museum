@@ -1,0 +1,34 @@
+plugins {
+  id "com.adjectivemonk2.kotlin.multiplatform"
+  id "app.cash.redwood.generator.testing"
+}
+
+archivesBaseName = 'schema-testing'
+
+kotlin {
+
+  js(IR) {
+    browser()
+  }
+
+  jvm {
+    jvmToolchain(17)
+  }
+
+  sourceSets {
+    commonMain {
+      dependencies {
+        api libs.redwood.layout.widget
+        api libs.redwood.layout.testing
+        api libs.redwood.lazylayout.widget
+        api libs.redwood.lazylayout.testing
+        api projects.schema.widget
+      }
+    }
+  }
+}
+
+redwoodSchema {
+  source = projects.schema
+  type = 'com.adjectivemonk2.museum.Museum'
+}

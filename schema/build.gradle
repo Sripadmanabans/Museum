@@ -1,0 +1,17 @@
+plugins {
+  id "com.adjectivemonk2.kotlin.jvm"
+  id "app.cash.redwood.schema"
+}
+
+kotlin {
+  jvmToolchain(17)
+}
+
+dependencies {
+  api libs.redwood.layout.schema
+  api libs.redwood.lazylayout.schema
+}
+
+redwoodSchema {
+  type = 'com.adjectivemonk2.museum.Museum'
+}

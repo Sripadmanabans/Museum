@@ -1,0 +1,10 @@
+[com.adjectivemonk2.museum.presenter.treehouse.gallery.GalleryPresenter]
+
+functions = [
+    # fun close(): kotlin.Unit
+    "moYx+T3e",
+    # fun launch(): app.cash.redwood.treehouse.ZiplineTreehouseUi
+    "sqKEI1vX",
+    # val appLifecycle: app.cash.redwood.treehouse.AppLifecycle
+    "odhmO/d6",
+]

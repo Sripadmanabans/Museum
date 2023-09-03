@@ -1,0 +1,45 @@
+plugins {
+  id "com.adjectivemonk2.kotlin.multiplatform"
+  id "com.android.library"
+  id "app.cash.zipline"
+}
+
+kotlin {
+
+  jvm {
+    jvmToolchain(17)
+  }
+
+  androidTarget()
+
+  sourceSets {
+    commonMain {
+      dependencies {
+        implementation projects.presenterTreehouse.gallery
+
+        api libs.redwood.treehouse.host
+        api libs.zipline.loader
+      }
+    }
+  }
+}
+
+android {
+  namespace "com.adjectivemonk2.museum.launcher"
+  buildFeatures {
+    resValues false
+  }
+
+  compileOptions {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+  }
+
+  compileSdkVersion buildConfig.compileSdk
+
+  defaultConfig {
+    minSdkVersion buildConfig.minSdk
+    targetSdkVersion buildConfig.targetSdk
+    consumerProguardFiles "consumer-rules.pro"
+  }
+}
