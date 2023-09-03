@@ -1,0 +1,47 @@
+plugins {
+  id "com.adjectivemonk2.android.lib"
+}
+
+android {
+  buildFeatures {
+    compose true
+  }
+
+  composeOptions {
+    kotlinCompilerExtensionVersion libs.versions.compose.get()
+  }
+
+  kotlinOptions {
+    freeCompilerArgs += "-XXLanguage:+NewInference"
+    freeCompilerArgs += "-progressive"
+    freeCompilerArgs += "-Xexplicit-api=strict"
+    if (project.findProperty("pixels.enableComposeCompilerReports") == "true") {
+      freeCompilerArgs += [
+        "-P",
+        "plugin:androidx.compose.compiler.plugins.kotlin:reportsDestination=" +
+          buildDir.absolutePath + "/compose_metrics"
+      ]
+      freeCompilerArgs += [
+        "-P",
+        "plugin:androidx.compose.compiler.plugins.kotlin:metricsDestination=" +
+          buildDir.absolutePath + "/compose_metrics"
+      ]
+    }
+
+    def kotlinVersion = libs.versions.kotlin.get()
+    def composeKotlinVersion = libs.versions.composeKotlin.get()
+    def suppressComposeCompatibility = kotlinVersion != composeKotlinVersion
+    if (suppressComposeCompatibility) {
+      println("Suppressing app library level compiler kotlin compiler check!!")
+      freeCompilerArgs += [
+        "-P",
+        "plugin:androidx.compose.compiler.plugins.kotlin:suppressKotlinVersionCompatibilityCheck=" +
+          "$kotlinVersion"
+      ]
+    }
+  }
+}
+
+dependencies {
+  implementation libs.compose.runtime
+}

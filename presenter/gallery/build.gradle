@@ -1,0 +1,35 @@
+plugins {
+  id "com.adjectivemonk2.kotlin.multiplatform"
+  id "app.cash.redwood"
+}
+
+kotlin {
+  js(IR) {
+    browser()
+  }
+
+  jvm {
+    jvmToolchain(17)
+  }
+
+  sourceSets {
+    commonMain {
+      dependencies {
+        api projects.schema.compose
+
+        api libs.redwood.treehouse
+        api libs.redwood.treehouse.guest.compose
+      }
+    }
+    commonTest {
+      dependencies {
+        implementation libs.kotlin.test
+        implementation libs.assertk
+        implementation libs.kotlin.coroutines.test
+        implementation libs.redwood.testing
+        implementation libs.redwood.layout.compose
+        implementation projects.schema.testing
+      }
+    }
+  }
+}

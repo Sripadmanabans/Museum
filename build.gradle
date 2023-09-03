@@ -26,8 +26,21 @@ plugins {
   alias libs.plugins.detekt apply false
 
   alias libs.plugins.kotlin.android apply false
+  alias libs.plugins.kotlin.jvm apply false
+  alias libs.plugins.kotlin.multiplatform apply false
+  alias libs.plugins.kotlin.serialization apply false
+
+  alias libs.plugins.redwood.core apply false
+  alias libs.plugins.redwood.schema apply false
+  alias libs.plugins.redwood.generator.compose apply false
+  alias libs.plugins.redwood.generator.composeProtocol apply false
+  alias libs.plugins.redwood.generator.testing apply false
+  alias libs.plugins.redwood.generator.widget apply false
+  alias libs.plugins.redwood.generator.widgetProtocol apply false
 
   alias libs.plugins.spotless apply false
+
+  alias libs.plugins.zipeline apply false
 }
 
 @SuppressWarnings('unused')

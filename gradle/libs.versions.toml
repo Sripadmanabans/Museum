@@ -5,27 +5,33 @@ androidBuild = "8.1.0-rc01"
 core = "1.12.0-rc01"
 
 # Compose Components
-compose = "1.5.0"
+coil = "2.4.0"
+compose = "1.5.2"
 composeKotlin = "1.9.0"
 composeAndroid = "1.6.0-alpha04"
-composeJetbrains = "1.5.0-beta02"
+composeJetbrains = "1.5.0"
 material = "1.2.0-alpha06"
 
 # Core Components
+coroutine = "1.7.3"
 kotlin = "1.9.0"
+redwood = "0.6.0"
+zipline = "1.2.0"
 
 # Testing
 androidTestRunner = "1.6.0-alpha04"
 androidTestOrchestrator = "1.5.0-alpha01"
-androidJunit5 = "1.9.3.0"
+androidJunit5 = "1.3.0"
 androidJunit5Compose = "1.0.0-SNAPSHOT"
+androidJunit5Plugin = "1.9.3.0"
 androidTracing = "1.3.0-alpha02"
+assertk = "0.26.1"
 junit5 = "5.10.0"
 
 # Code Health Components
 detekt = "1.23.1"
 ktlint = "0.50.0"
-spotless = "6.20.0"
+spotless = "6.21.0"
 
 [libraries]
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activity" }
@@ -37,27 +43,68 @@ androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", versi
 androidx-compose-ui-toolingPreview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "composeAndroid" }
 androidx-compose-ui-ui = { module = "androidx.compose.ui:ui", version.ref = "composeAndroid" }
 androidx-junit5-compose = { module = "de.mannodermaus.junit5:android-test-compose", version.ref = "androidJunit5Compose" }
-androidx-junit5-test-core = { module = "de.mannodermaus.junit5:android-test-core", version.ref = "androidJunit5Compose" }
-androidx-junit5-test-runner = { module = "de.mannodermaus.junit5:android-test-runner", version.ref = "androidJunit5Compose" }
+androidx-junit5-test-core = { module = "de.mannodermaus.junit5:android-test-core", version.ref = "androidJunit5" }
+androidx-junit5-test-runner = { module = "de.mannodermaus.junit5:android-test-runner", version.ref = "androidJunit5" }
 androidx-test-runnner = { module = "androidx.test:runner", version.ref = "androidTestRunner" }
 androidx-test-orchestrator = { module = "androidx.test:orchestrator", version.ref = "androidTestOrchestrator" }
 androidx-test-espresso-core = { module = "androidx.test.espresso:espresso-core", version = "3.6.0-alpha01" }
 androidx-tracing = { module = "androidx.tracing:tracing", version.ref = "androidTracing" }
+assertk = { module = "com.willowtreeapps.assertk:assertk", version.ref = "assertk" }
+
+coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
+compose-runtime = { module = "androidx.compose.runtime:runtime", version.ref = "composeAndroid" }
 
 google-material = { module = "androidx.compose.material3:material3", version.ref = "material" }
 
 junit5-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junit5" }
 junit5-params = { module = "org.junit.jupiter:junit-jupiter-params", version.ref = "junit5" }
 
+kotlin-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutine" }
+kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
+
+redwood-layout-compose = { module = "app.cash.redwood:redwood-layout-compose", version.ref = "redwood" }
+redwood-layout-composeui = { module = "app.cash.redwood:redwood-layout-composeui", version.ref = "redwood" }
+redwood-layout-dom = { module = "app.cash.redwood:redwood-layout-dom", version.ref = "redwood" }
+redwood-layout-modifiers = { module = "app.cash.redwood:redwood-layout-modifiers", version.ref = "redwood" }
+redwood-layout-schema = { module = "app.cash.redwood:redwood-layout-schema", version.ref = "redwood" }
+redwood-layout-testing = { module = "app.cash.redwood:redwood-layout-testing", version.ref = "redwood" }
+redwood-layout-widget = { module = "app.cash.redwood:redwood-layout-widget", version.ref = "redwood" }
+redwood-lazylayout-compose = { module = "app.cash.redwood:redwood-lazylayout-compose", version.ref = "redwood" }
+redwood-lazylayout-composeui = { module = "app.cash.redwood:redwood-lazylayout-composeui", version.ref = "redwood" }
+redwood-lazylayout-schema = { module = "app.cash.redwood:redwood-lazylayout-schema", version.ref = "redwood" }
+redwood-lazylayout-testing = { module = "app.cash.redwood:redwood-lazylayout-testing", version.ref = "redwood" }
+redwood-lazylayout-widget = { module = "app.cash.redwood:redwood-lazylayout-widget", version.ref = "redwood" }
+redwood-testing = { module = "app.cash.redwood:redwood-testing", version.ref = "redwood" }
+redwood-treehouse = { module = "app.cash.redwood:redwood-treehouse", version.ref = "redwood" }
+redwood-treehouse-host = { module = "app.cash.redwood:redwood-treehouse-host", version.ref = "redwood" }
+redwood-treehouse-composeui = { module = "app.cash.redwood:redwood-treehouse-composeui", version.ref = "redwood" }
+redwood-treehouse-guest = { module = "app.cash.redwood:redwood-treehouse-guest", version.ref = "redwood" }
+redwood-treehouse-guest-compose = { module = "app.cash.redwood:redwood-treehouse-guest-compose", version.ref = "redwood" }
+
+zipline-loader = { module = "app.cash.zipline:zipline-loader", version.ref = "zipline" }
+
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidBuild" }
 android-library = { id = "com.android.library", version.ref = "androidBuild" }
-android-junit5 = { id = "de.mannodermaus.android-junit5", version.ref = "androidJunit5" }
+android-junit5 = { id = "de.mannodermaus.android-junit5", version.ref = "androidJunit5Plugin" }
 
 compose = { id = "org.jetbrains.compose", version.ref = "composeJetbrains" }
 
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+
+redwood-core = { id = "app.cash.redwood", version.ref = "redwood" }
+redwood-schema = { id = "app.cash.redwood.schema", version.ref = "redwood" }
+redwood-generator-compose = { id = "app.cash.redwood.generator.compose", version.ref = "redwood" }
+redwood-generator-composeProtocol = { id = "app.cash.redwood.generator.compose.protocol", version.ref = "redwood" }
+redwood-generator-testing = { id = "app.cash.redwood.generator.testing", version.ref = "redwood" }
+redwood-generator-widget = { id = "app.cash.redwood.generator.widget", version.ref = "redwood" }
+redwood-generator-widgetProtocol = { id = "app.cash.redwood.generator.widget.protocol", version.ref = "redwood" }
 
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
+
+zipeline = { id = "app.cash.zipline", version.ref = "zipline" }

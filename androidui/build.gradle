@@ -1,0 +1,18 @@
+plugins {
+  id "com.adjectivemonk2.android.compose.lib"
+}
+
+android {
+  namespace 'com.adjectivemonk2.museum.ui'
+  buildFeatures {
+    androidResources = true
+  }
+}
+
+dependencies {
+  api projects.schema.widget.protocol
+
+  implementation libs.androidx.core
+  implementation libs.coil.compose
+  implementation libs.google.material
+}

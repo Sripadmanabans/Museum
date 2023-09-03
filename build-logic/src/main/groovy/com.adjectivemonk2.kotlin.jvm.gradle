@@ -1,0 +1,16 @@
+plugins {
+  id "org.jetbrains.kotlin.jvm"
+  id "com.adjectivemonk2.detekt"
+  id "com.adjectivemonk2.spotless"
+}
+
+kotlin {
+  explicitApi()
+}
+
+tasks.withType(AbstractTestTask).configureEach { task ->
+  task.testLogging {
+    events "passed", "skipped", "failed"
+    exceptionFormat "full"
+  }
+}

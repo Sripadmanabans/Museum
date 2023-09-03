@@ -1,0 +1,54 @@
+plugins {
+  id "com.android.library"
+  id "org.jetbrains.kotlin.android"
+  id "com.adjectivemonk2.detekt"
+  id "com.adjectivemonk2.spotless"
+}
+
+android {
+  buildFeatures {
+    resValues false
+  }
+
+  buildTypes {
+    release {
+      minifyEnabled true
+
+      proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+    }
+  }
+
+  compileOptions {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+  }
+
+  compileSdkVersion buildConfig.compileSdk
+
+  defaultConfig {
+    minSdkVersion buildConfig.minSdk
+    targetSdkVersion buildConfig.targetSdk
+    consumerProguardFiles "consumer-rules.pro"
+  }
+
+  kotlinOptions {
+    allWarningsAsErrors = true
+
+    freeCompilerArgs += "-XXLanguage:+NewInference"
+    freeCompilerArgs += "-progressive"
+    freeCompilerArgs += "-Xexplicit-api=strict"
+  }
+
+  packagingOptions {
+    resources {
+      exclude "META-INF/com.google.dagger_dagger.version"
+      exclude "META-INF/LICENSE*"
+      exclude "META-INF/versions/9/previous-compilation-data.bin"
+    }
+  }
+}
+
+kotlin {
+  jvmToolchain(17)
+}

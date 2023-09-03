@@ -1,0 +1,39 @@
+plugins {
+  id "com.adjectivemonk2.kotlin.multiplatform"
+  id "org.jetbrains.kotlin.plugin.serialization"
+  id "app.cash.zipline"
+}
+
+kotlin {
+  jvm {
+    jvmToolchain(17)
+  }
+
+  js {
+    // The name of the JS module which needs to be unique within the repo.
+    moduleName = "museum-presenter-treehouse-gallery"
+    browser()
+    binaries.executable()
+  }
+
+  sourceSets {
+    commonMain {
+      dependencies {
+        api libs.redwood.treehouse
+      }
+    }
+
+    jsMain {
+      dependencies {
+        api libs.redwood.treehouse.guest
+        api projects.presenter.gallery
+
+        implementation projects.schema.compose.protocol
+      }
+    }
+  }
+}
+
+zipline {
+  mainFunction = "com.adjectivemonk2.museum.presenter.treehouse.gallery.preparePresenters"
+}

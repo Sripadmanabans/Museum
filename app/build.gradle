@@ -4,11 +4,16 @@ plugins {
 }
 
 dependencies {
+  implementation projects.androidui
+  implementation projects.presenterTreehouse.gallery
+  implementation projects.launcher
+
   implementation libs.androidx.core
   implementation libs.androidx.activity.compose
-  implementation libs.androidx.compose.ui.ui
-  implementation libs.androidx.compose.ui.toolingPreview
-  implementation libs.google.material
+  implementation libs.redwood.layout.composeui
+  implementation libs.redwood.lazylayout.composeui
+  implementation libs.redwood.treehouse.composeui
+
   debugImplementation libs.androidx.compose.ui.tooling
   debugImplementation libs.androidx.compose.ui.test.manifest
 }
