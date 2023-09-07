@@ -2,7 +2,7 @@
 # Android Components
 activity = "1.8.0-alpha07"
 androidBuild = "8.1.0-rc01"
-core = "1.12.0-rc01"
+core = "1.12.0"
 
 # Compose Components
 coil = "2.4.0"
