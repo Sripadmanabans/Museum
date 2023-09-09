@@ -1,7 +1,9 @@
+import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
+
 plugins {
-  id "com.adjectivemonk2.kotlin.multiplatform"
-  id "org.jetbrains.kotlin.plugin.serialization"
-  id "app.cash.zipline"
+  id 'com.adjectivemonk2.kotlin.multiplatform'
+  id 'org.jetbrains.kotlin.plugin.serialization'
+  id 'app.cash.zipline'
 }
 
 kotlin {
@@ -9,16 +11,23 @@ kotlin {
     jvmToolchain(17)
   }
 
-  js {
+  js(IR) {
     // The name of the JS module which needs to be unique within the repo.
-    moduleName = "museum-presenter-treehouse-gallery"
-    browser()
+    moduleName = 'museum-presenter-treehouse-gallery'
+    browser {
+      commonWebpackConfig {
+        mode = KotlinWebpackConfig.Mode.DEVELOPMENT
+      }
+    }
     binaries.executable()
   }
 
   sourceSets {
     commonMain {
       dependencies {
+        api projects.remote.core.public
+        api projects.remote.gallery.impl
+
         api libs.redwood.treehouse
       }
     }

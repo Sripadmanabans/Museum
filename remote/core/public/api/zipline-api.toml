@@ -1,0 +1,8 @@
+[com.adjectivemonk2.museum.remote.core.HostApi]
+
+functions = [
+  # fun close(): kotlin.Unit
+  "moYx+T3e",
+  # suspend fun get(kotlin.String): kotlin.String
+  "60Uxjr31",
+]

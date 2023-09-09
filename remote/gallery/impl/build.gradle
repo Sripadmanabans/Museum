@@ -1,0 +1,26 @@
+plugins {
+  id 'com.adjectivemonk2.kotlin.multiplatform'
+}
+
+archivesBaseName = 'remote-gallery-impl'
+
+kotlin {
+  jvm {
+    jvmToolchain(17)
+  }
+
+  js(IR) {
+    browser()
+  }
+
+  sourceSets {
+    commonMain {
+      dependencies {
+        api projects.remote.core.public
+        api projects.remote.gallery.public
+
+        libs.kotlin.serialization
+      }
+    }
+  }
+}

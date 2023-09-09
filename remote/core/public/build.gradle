@@ -1,0 +1,24 @@
+plugins {
+  id 'com.adjectivemonk2.kotlin.multiplatform'
+  id 'app.cash.zipline'
+}
+
+archivesBaseName = 'remote-core-public'
+
+kotlin {
+  jvm {
+    jvmToolchain(17)
+  }
+
+  js(IR) {
+    browser()
+  }
+
+  sourceSets {
+    commonMain {
+      dependencies {
+        api libs.zipline
+      }
+    }
+  }
+}

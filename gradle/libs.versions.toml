@@ -1,22 +1,27 @@
 [versions]
 # Android Components
-activity = "1.8.0-alpha07"
-androidBuild = "8.1.0-rc01"
-core = "1.12.0-rc01"
+activity = "1.8.0-beta01"
+androidBuild = "8.1.1"
+core = "1.12.0"
 
 # Compose Components
 coil = "2.4.0"
 compose = "1.5.2"
 composeKotlin = "1.9.0"
-composeAndroid = "1.6.0-alpha04"
+composeAndroid = "1.6.0-alpha05"
 composeJetbrains = "1.5.0"
-material = "1.2.0-alpha06"
+material = "1.2.0-alpha07"
 
 # Core Components
 coroutine = "1.7.3"
 kotlin = "1.9.0"
+ktor = "2.3.3"
 redwood = "0.6.0"
+serialization = "1.5.1"
 zipline = "1.2.0"
+
+# Helper Components
+kermit = "2.0.0-RC5"
 
 # Testing
 androidTestRunner = "1.6.0-alpha04"
@@ -59,8 +64,16 @@ google-material = { module = "androidx.compose.material3:material3", version.ref
 junit5-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junit5" }
 junit5-params = { module = "org.junit.jupiter:junit-jupiter-params", version.ref = "junit5" }
 
+kermit = { module = "co.touchlab:kermit", version.ref = "kermit" }
+kotlin-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutine" }
 kotlin-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutine" }
+kotlin-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
+ktor-client = { module = "io.ktor:ktor-client-cio", version.ref = "ktor" }
+ktor-content = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
+ktor-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
+ktor-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
+ktor-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor" }
 
 redwood-layout-compose = { module = "app.cash.redwood:redwood-layout-compose", version.ref = "redwood" }
 redwood-layout-composeui = { module = "app.cash.redwood:redwood-layout-composeui", version.ref = "redwood" }
@@ -81,6 +94,7 @@ redwood-treehouse-composeui = { module = "app.cash.redwood:redwood-treehouse-com
 redwood-treehouse-guest = { module = "app.cash.redwood:redwood-treehouse-guest", version.ref = "redwood" }
 redwood-treehouse-guest-compose = { module = "app.cash.redwood:redwood-treehouse-guest-compose", version.ref = "redwood" }
 
+zipline = { module = "app.cash.zipline:zipline", version.ref = "zipline" }
 zipline-loader = { module = "app.cash.zipline:zipline-loader", version.ref = "zipline" }
 
 [plugins]

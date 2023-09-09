@@ -1,0 +1,24 @@
+plugins {
+  id 'com.adjectivemonk2.kotlin.multiplatform'
+  id 'org.jetbrains.kotlin.plugin.serialization'
+}
+
+archivesBaseName = 'remote-model-gallery-public'
+
+kotlin {
+  jvm {
+    jvmToolchain(17)
+  }
+
+  js(IR) {
+    browser()
+  }
+
+  sourceSets {
+    commonMain {
+      dependencies {
+        api projects.remote.model.core.public
+      }
+    }
+  }
+}

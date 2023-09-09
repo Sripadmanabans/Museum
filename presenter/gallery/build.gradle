@@ -1,6 +1,6 @@
 plugins {
-  id "com.adjectivemonk2.kotlin.multiplatform"
-  id "app.cash.redwood"
+  id 'com.adjectivemonk2.kotlin.multiplatform'
+  id 'app.cash.redwood'
 }
 
 kotlin {
@@ -15,20 +15,27 @@ kotlin {
   sourceSets {
     commonMain {
       dependencies {
+        api projects.remote.gallery.public
         api projects.schema.compose
 
         api libs.redwood.treehouse
         api libs.redwood.treehouse.guest.compose
+
+        implementation libs.kermit
       }
     }
     commonTest {
       dependencies {
-        implementation libs.kotlin.test
+        implementation projects.remote.gallery.fake
+        implementation projects.schema.testing
+
         implementation libs.assertk
+
+        implementation libs.kotlin.test
         implementation libs.kotlin.coroutines.test
+
         implementation libs.redwood.testing
         implementation libs.redwood.layout.compose
-        implementation projects.schema.testing
       }
     }
   }
