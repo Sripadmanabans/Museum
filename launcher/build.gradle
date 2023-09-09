@@ -1,8 +1,10 @@
 plugins {
-  id "com.adjectivemonk2.kotlin.multiplatform"
-  id "com.android.library"
-  id "app.cash.zipline"
+  id 'com.adjectivemonk2.kotlin.multiplatform'
+  id 'com.android.library'
+  id 'app.cash.zipline'
 }
+
+archivesBaseName = 'launcher'
 
 kotlin {
 
@@ -16,6 +18,7 @@ kotlin {
     commonMain {
       dependencies {
         implementation projects.presenterTreehouse.gallery
+        implementation projects.remote.core.public
 
         api libs.redwood.treehouse.host
         api libs.zipline.loader

@@ -1,6 +1,6 @@
 plugins {
-  id "com.adjectivemonk2.kotlin.multiplatform"
-  id "app.cash.redwood.generator.compose"
+  id 'com.adjectivemonk2.kotlin.multiplatform'
+  id 'app.cash.redwood.generator.compose'
 }
 
 archivesBaseName = 'schema-compose'
@@ -18,9 +18,10 @@ kotlin {
   sourceSets {
     commonMain {
       dependencies {
+        api projects.schema.widget
+
         api libs.redwood.layout.compose
         api libs.redwood.lazylayout.compose
-        api projects.schema.widget
       }
     }
   }

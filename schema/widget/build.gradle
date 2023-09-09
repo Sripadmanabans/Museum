@@ -1,6 +1,6 @@
 plugins {
-  id "com.adjectivemonk2.kotlin.multiplatform"
-  id "app.cash.redwood.generator.widget"
+  id 'com.adjectivemonk2.kotlin.multiplatform'
+  id 'app.cash.redwood.generator.widget'
 }
 
 archivesBaseName = 'schema-widget'

@@ -44,6 +44,7 @@ android {
     versionCode buildConfig.version.code
     versionName buildConfig.version.name
     proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+    buildConfigField "String", "MUSEUM_CLIENT_ID", "\"${MUSEUM_CLIENT_ID}\""
   }
 
   kotlinOptions {

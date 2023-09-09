@@ -1,6 +1,6 @@
 plugins {
-  id "com.adjectivemonk2.kotlin.multiplatform"
-  id "app.cash.redwood.generator.testing"
+  id 'com.adjectivemonk2.kotlin.multiplatform'
+  id 'app.cash.redwood.generator.testing'
 }
 
 archivesBaseName = 'schema-testing'
@@ -18,11 +18,12 @@ kotlin {
   sourceSets {
     commonMain {
       dependencies {
-        api libs.redwood.layout.widget
-        api libs.redwood.layout.testing
-        api libs.redwood.lazylayout.widget
-        api libs.redwood.lazylayout.testing
         api projects.schema.widget
+
+        api libs.redwood.layout.testing
+        api libs.redwood.layout.widget
+        api libs.redwood.lazylayout.testing
+        api libs.redwood.lazylayout.widget
       }
     }
   }

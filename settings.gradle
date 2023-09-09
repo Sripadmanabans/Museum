@@ -11,7 +11,7 @@ pluginManagement {
 }
 
 plugins {
-  id "com.gradle.enterprise" version "3.14.1"
+  id 'com.gradle.enterprise' version '3.14.1'
 }
 
 gradleEnterprise {
@@ -36,13 +36,20 @@ dependencyResolutionManagement {
 
 enableFeaturePreview('TYPESAFE_PROJECT_ACCESSORS')
 
-rootProject.name = "Museum"
+rootProject.name = 'Museum'
 
 include ':androidui'
 include ':app'
 include ':launcher'
 include ':presenter:gallery'
 include ':presenter-treehouse:gallery'
+include ':remote:core:impl'
+include ':remote:core:public'
+include ':remote:gallery:fake'
+include ':remote:gallery:impl'
+include ':remote:gallery:public'
+include ':remote:model:core:public'
+include ':remote:model:gallery:public'
 include ':schema'
 include ':schema:compose'
 include ':schema:compose:protocol'
