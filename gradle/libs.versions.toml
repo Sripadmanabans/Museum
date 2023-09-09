@@ -17,7 +17,7 @@ coroutine = "1.7.3"
 kotlin = "1.9.0"
 ktor = "2.3.3"
 redwood = "0.6.0"
-serialization = "1.5.1"
+serialization = "1.6.0"
 zipline = "1.2.0"
 
 # Helper Components
