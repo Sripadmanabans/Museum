@@ -22,8 +22,7 @@ dependencies {
 
   implementation libs.redwood.layout.composeui
   implementation libs.redwood.lazylayout.composeui
-  implementation libs.redwood.treehouse.composeui
-  implementation libs.redwood.treehouse.host
+  implementation libs.redwood.treehouse.host.composeui
 
   debugImplementation libs.androidx.compose.ui.tooling
   debugImplementation libs.androidx.compose.ui.test.manifest

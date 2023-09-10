@@ -27,6 +27,7 @@ kotlin {
       dependencies {
         api projects.remote.core.public
         api projects.remote.gallery.impl
+        api projects.repository.gallery.impl
 
         api libs.redwood.treehouse
       }

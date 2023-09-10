@@ -1,4 +1,4 @@
-package com.adjectivemonk2.museum.remote.gallery
+package com.adjectivemonk2.museum.repository.gallery
 
 import kotlin.jvm.JvmInline
 

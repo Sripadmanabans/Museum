@@ -1,0 +1,25 @@
+plugins {
+  id 'com.adjectivemonk2.kotlin.multiplatform'
+}
+
+archivesBaseName = 'repository-gallery-public'
+
+kotlin {
+  jvm {
+    jvmToolchain(17)
+  }
+
+  js(IR) {
+    browser()
+  }
+
+  sourceSets {
+    commonMain {
+      dependencies {
+        api projects.model.gallery.public
+
+        api libs.kotlin.coroutines.core
+      }
+    }
+  }
+}

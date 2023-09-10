@@ -4,9 +4,9 @@ pluginManagement {
     gradlePluginPortal()
     google()
     mavenCentral()
+    maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
     maven { url "https://androidx.dev/storage/compose-compiler/repository/" }
     maven { url "https://maven.pkg.jetbrains.space/public/p/compose/dev" }
-    maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
   }
 }
 
@@ -28,9 +28,9 @@ dependencyResolutionManagement {
   repositories {
     google()
     mavenCentral()
+    maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
     maven { url "https://androidx.dev/storage/compose-compiler/repository/" }
     maven { url "https://maven.pkg.jetbrains.space/public/p/compose/dev" }
-    maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
   }
 }
 
@@ -40,19 +40,31 @@ rootProject.name = 'Museum'
 
 include ':androidui'
 include ':app'
+
 include ':launcher'
+
+include ':model:gallery:public'
+
 include ':presenter:gallery'
 include ':presenter-treehouse:gallery'
+
 include ':remote:core:impl'
 include ':remote:core:public'
+
 include ':remote:gallery:fake'
 include ':remote:gallery:impl'
 include ':remote:gallery:public'
+
 include ':remote:model:core:public'
 include ':remote:model:gallery:public'
+
+include ':repository:gallery:fake'
+include ':repository:gallery:impl'
+include ':repository:gallery:public'
+
 include ':schema'
 include ':schema:compose'
 include ':schema:compose:protocol'
+include ':schema:testing'
 include ':schema:widget'
 include ':schema:widget:protocol'
-include ':schema:testing'

@@ -15,7 +15,7 @@ kotlin {
   sourceSets {
     commonMain {
       dependencies {
-        api projects.remote.gallery.public
+        api projects.repository.gallery.public
         api projects.schema.compose
 
         api libs.redwood.treehouse
@@ -26,7 +26,7 @@ kotlin {
     }
     commonTest {
       dependencies {
-        implementation projects.remote.gallery.fake
+        implementation projects.repository.gallery.fake
         implementation projects.schema.testing
 
         implementation libs.assertk

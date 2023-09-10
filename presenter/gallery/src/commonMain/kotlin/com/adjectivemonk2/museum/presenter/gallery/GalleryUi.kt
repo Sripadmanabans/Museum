@@ -8,22 +8,23 @@ import app.cash.redwood.ui.dp
 import co.touchlab.kermit.Logger
 import com.adjectivemonk2.museum.compose.Image
 import com.adjectivemonk2.museum.compose.Text
-import com.adjectivemonk2.museum.remote.gallery.GalleryRemoteDataSource
-import com.adjectivemonk2.museum.remote.gallery.Section
-import com.adjectivemonk2.museum.remote.gallery.Sort
-import com.adjectivemonk2.museum.remote.gallery.Window
+import com.adjectivemonk2.museum.repository.gallery.GalleryRepository
+import com.adjectivemonk2.museum.repository.gallery.Section
+import com.adjectivemonk2.museum.repository.gallery.Sort
+import com.adjectivemonk2.museum.repository.gallery.Window
+import kotlinx.coroutines.flow.first
 
 @Composable
-internal fun GalleryUi(galleryRemoteDataSource: GalleryRemoteDataSource) {
+internal fun GalleryUi(galleryRepository: GalleryRepository) {
   LaunchedEffect(Unit) {
     try {
-      val data = galleryRemoteDataSource.getGallery(
-        section = Section.HOT.param,
-        sort = Sort.VIRAL.param,
-        window = Window.DAY.param,
+      val data = galleryRepository.getGallery(
+        section = Section.HOT,
+        sort = Sort.VIRAL,
+        window = Window.DAY,
         page = 0
-      )
-      Logger.i { "Api failed Success $data" }
+      ).first()
+      Logger.i { "Api Success $data" }
     } catch (throwable: Throwable) {
       Logger.w(throwable) { "Api failed.." }
     }

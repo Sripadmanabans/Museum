@@ -6,7 +6,7 @@ import app.cash.redwood.layout.widget.RowValue
 import app.cash.redwood.ui.dp
 import assertk.assertThat
 import assertk.assertions.containsExactly
-import com.adjectivemonk2.museum.remote.gallery.fake.FakeGalleryRemoteDataSource
+import com.adjectivemonk2.museum.repository.gallery.fake.FakeGalleryRepository
 import com.adjectivemonk2.museum.widget.ImageValue
 import com.adjectivemonk2.museum.widget.MuseumTester
 import com.adjectivemonk2.museum.widget.TextValue
@@ -17,10 +17,10 @@ internal class GalleryUiTest {
 
   @Test
   fun testingGalleryUi() = runTest {
-    val remoteDataSource = FakeGalleryRemoteDataSource()
+    val galleryRepository = FakeGalleryRepository()
     MuseumTester {
       setContent {
-        GalleryUi(remoteDataSource)
+        GalleryUi(galleryRepository)
       }
 
       val snapshot0 = awaitSnapshot()

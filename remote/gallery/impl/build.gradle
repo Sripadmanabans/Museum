@@ -18,6 +18,7 @@ kotlin {
       dependencies {
         api projects.remote.core.public
         api projects.remote.gallery.public
+        api projects.remote.model.gallery.public
 
         libs.kotlin.serialization
       }
