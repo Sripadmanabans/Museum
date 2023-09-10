@@ -1,0 +1,25 @@
+plugins {
+  id 'com.adjectivemonk2.kotlin.multiplatform'
+}
+
+archivesBaseName = 'repository-gallery-fake'
+
+kotlin {
+  jvm {
+    jvmToolchain(17)
+  }
+
+  js(IR) {
+    browser()
+  }
+
+  sourceSets {
+    commonMain {
+      dependencies {
+        api projects.repository.gallery.public
+
+        implementation libs.kotlin.coroutines.core
+      }
+    }
+  }
+}

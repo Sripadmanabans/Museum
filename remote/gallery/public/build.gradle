@@ -16,7 +16,7 @@ kotlin {
   sourceSets {
     commonMain {
       dependencies {
-        api projects.remote.model.gallery.public
+        api projects.model.gallery.public
       }
     }
   }

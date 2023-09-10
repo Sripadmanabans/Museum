@@ -5,11 +5,11 @@ import app.cash.redwood.treehouse.ZiplineTreehouseUi
 import app.cash.redwood.treehouse.asZiplineTreehouseUi
 import com.adjectivemonk2.museum.compose.MuseumProtocolBridge
 import com.adjectivemonk2.museum.presenter.gallery.GalleryTreehouseUi
-import com.adjectivemonk2.museum.remote.gallery.GalleryRemoteDataSource
+import com.adjectivemonk2.museum.repository.gallery.GalleryRepository
 import kotlinx.serialization.json.Json
 
 public class RealGalleryPresenter(
-  private val remoteDataSource: GalleryRemoteDataSource,
+  private val galleryRepository: GalleryRepository,
   json: Json,
 ) : GalleryPresenter {
 
@@ -20,7 +20,7 @@ public class RealGalleryPresenter(
   )
 
   override fun launch(): ZiplineTreehouseUi {
-    val treehouseUi = GalleryTreehouseUi(remoteDataSource)
+    val treehouseUi = GalleryTreehouseUi(galleryRepository)
     return treehouseUi.asZiplineTreehouseUi(appLifecycle)
   }
 }

@@ -45,8 +45,6 @@ import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.serialization.json.Json
 import okhttp3.OkHttpClient
-import okio.FileSystem
-import okio.Path.Companion.toOkioPath
 import co.touchlab.kermit.Logger.Companion as KermitLogger
 
 @NoLiveLiterals
@@ -96,11 +94,6 @@ public class MuseumActivity : ComponentActivity() {
       httpClient = httpClient,
       manifestVerifier = ManifestVerifier.NO_SIGNATURE_CHECKS,
       eventListener = appEventListener,
-      stateStore = FileStateStore(
-        json = Json,
-        fileSystem = FileSystem.SYSTEM,
-        directory = applicationContext.getDir("TreehouseState", MODE_PRIVATE).toOkioPath(),
-      ),
     )
 
     val manifestUrlFlow = flowOf("http://10.0.2.2:8080/manifest.zipline.json")

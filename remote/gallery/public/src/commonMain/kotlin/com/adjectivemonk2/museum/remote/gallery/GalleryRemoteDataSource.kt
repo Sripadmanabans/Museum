@@ -1,6 +1,6 @@
 package com.adjectivemonk2.museum.remote.gallery
 
-import com.adjectivemonk2.museum.remote.model.gallery.GalleryFromRemote
+import com.adjectivemonk2.museum.model.gallery.Gallery
 
 public interface GalleryRemoteDataSource {
   public suspend fun getGallery(
@@ -8,5 +8,5 @@ public interface GalleryRemoteDataSource {
     sort: String,
     window: String,
     page: Int,
-  ): List<GalleryFromRemote>
+  ): List<Gallery>
 }

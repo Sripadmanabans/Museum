@@ -15,28 +15,16 @@ android {
     freeCompilerArgs += "-XXLanguage:+NewInference"
     freeCompilerArgs += "-progressive"
     freeCompilerArgs += "-Xexplicit-api=strict"
-    if (project.findProperty("pixels.enableComposeCompilerReports") == "true") {
+    if (project.findProperty("museum.enableComposeCompilerReports") == "true") {
+      Provider<Directory> output = layout.buildDirectory.dir("compose_metrics")
+      def filePath = output.get().asFile.absolutePath
       freeCompilerArgs += [
         "-P",
-        "plugin:androidx.compose.compiler.plugins.kotlin:reportsDestination=" +
-          buildDir.absolutePath + "/compose_metrics"
+        "plugin:androidx.compose.compiler.plugins.kotlin:reportsDestination=" + filePath
       ]
       freeCompilerArgs += [
         "-P",
-        "plugin:androidx.compose.compiler.plugins.kotlin:metricsDestination=" +
-          buildDir.absolutePath + "/compose_metrics"
-      ]
-    }
-
-    def kotlinVersion = libs.versions.kotlin.get()
-    def composeKotlinVersion = libs.versions.composeKotlin.get()
-    def suppressComposeCompatibility = kotlinVersion != composeKotlinVersion
-    if (suppressComposeCompatibility) {
-      println("Suppressing app library level compiler kotlin compiler check!!")
-      freeCompilerArgs += [
-        "-P",
-        "plugin:androidx.compose.compiler.plugins.kotlin:suppressKotlinVersionCompatibilityCheck=" +
-          "$kotlinVersion"
+        "plugin:androidx.compose.compiler.plugins.kotlin:metricsDestination=" + filePath
       ]
     }
   }

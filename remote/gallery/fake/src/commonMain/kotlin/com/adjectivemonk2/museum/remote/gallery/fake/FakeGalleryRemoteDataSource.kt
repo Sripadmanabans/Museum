@@ -1,23 +1,23 @@
 package com.adjectivemonk2.museum.remote.gallery.fake
 
+import com.adjectivemonk2.museum.model.gallery.Gallery
 import com.adjectivemonk2.museum.remote.gallery.GalleryRemoteDataSource
-import com.adjectivemonk2.museum.remote.model.gallery.GalleryFromRemote
 import kotlinx.coroutines.CompletableDeferred
 
 public class FakeGalleryRemoteDataSource : GalleryRemoteDataSource {
 
-  private var galleries = CompletableDeferred<List<GalleryFromRemote>>()
+  private var galleries = CompletableDeferred<List<Gallery>>()
 
   override suspend fun getGallery(
     section: String,
     sort: String,
     window: String,
     page: Int
-  ): List<GalleryFromRemote> {
+  ): List<Gallery> {
     return galleries.await()
   }
 
-  public fun setGalleries(galleries: List<GalleryFromRemote>?, throwable: Throwable?) {
+  public fun setGalleries(galleries: List<Gallery>?, throwable: Throwable?) {
     check((galleries != null) xor (throwable != null)) {
       "galleries or throwable should be provided!!"
     }
