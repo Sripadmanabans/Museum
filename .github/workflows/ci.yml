@@ -19,7 +19,7 @@ jobs:
   build:
     name: Build
     runs-on: macos-latest
-    timeout-minutes: 30
+    timeout-minutes: 20
     permissions:
       pull-requests: write
     steps:
@@ -41,39 +41,22 @@ jobs:
             kotlinUpgradeYarnLock build --stacktrace --scan
           cache-read-only: true
 
-      - name: Add build scan URL as PR comment
-        uses: actions/github-script@v6
+      - name: Find comment
+        uses: peter-evans/find-comment@v2
+        id: find_comment
         with:
-          script: |
-            const owner = context.repo.owner
-            const repo = context.repo.repo
-            const issueNumber = context.issue.number
-            const comments = await github.paginate(github.rest.issues.listComments, {
-              owner: owner,
-              repo: repo,
-              issue_number: issueNumber
-            })
-            
-            const matchingComments = comments.filter(comment =>
-              comment.body ? comment.body.includes("Build Scan report") : true
-            )
-            
-            const comment = matchingComments[0]
-            if (comment) {
-              github.rest.issues.updateComment({
-                owner: owner,
-                repo: repo,
-                comment_id: comment.id,
-                body: 'Build Scan Report: ${{ steps.gradle.outputs.build-scan-url }}'
-              })
-            } else {
-              github.rest.issues.createComment({
-                issue_number: issueNumber,
-                owner: owner,
-                repo: repo,
-                body: 'Build Scan Report: ${{ steps.gradle.outputs.build-scan-url }}'
-              })
-            }
+          issue-number: ${{ github.event.pull_request.number }}
+          body-includes: Build scan report
+
+      - name: Add build scan comment
+        uses: peter-evans/create-or-update-comment@v3
+        with:
+          edit-mode: replace
+          comment-id: ${{ steps.find_comment.outputs.comment-id }}
+          issue-number: ${{ github.event.pull_request.number }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          body: |
+            Build scan report: ${{ steps.gradle.outputs.build-scan-url }}
 
   # Runs all check tasks in parallel.
   check:
