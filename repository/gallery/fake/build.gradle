@@ -1,18 +1,11 @@
 plugins {
-  id 'com.adjectivemonk2.kotlin.multiplatform'
+  id 'com.adjectivemonk2.kotlin.multiplatform.js'
+  id 'com.adjectivemonk2.kotlin.multiplatform.jvm'
 }
 
 archivesBaseName = 'repository-gallery-fake'
 
 kotlin {
-  jvm {
-    jvmToolchain(17)
-  }
-
-  js(IR) {
-    browser()
-  }
-
   sourceSets {
     commonMain {
       dependencies {

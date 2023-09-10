@@ -1,15 +1,11 @@
 plugins {
-  id 'com.adjectivemonk2.kotlin.multiplatform'
+  id 'com.adjectivemonk2.kotlin.multiplatform.js'
   id 'app.cash.redwood.generator.compose.protocol'
 }
 
 archivesBaseName = 'schema-compose-protocol'
 
 kotlin {
-  js(IR) {
-    browser()
-  }
-
   sourceSets {
     commonMain {
       dependencies {

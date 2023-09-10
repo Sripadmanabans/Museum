@@ -1,5 +1,5 @@
 plugins {
-  id "io.gitlab.arturbosch.detekt"
+  id 'io.gitlab.arturbosch.detekt'
 }
 
 detekt {

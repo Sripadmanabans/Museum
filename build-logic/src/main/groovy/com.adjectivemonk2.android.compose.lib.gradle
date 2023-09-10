@@ -1,5 +1,5 @@
 plugins {
-  id "com.adjectivemonk2.android.lib"
+  id 'com.adjectivemonk2.android.lib'
 }
 
 android {

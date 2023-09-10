@@ -1,19 +1,12 @@
 plugins {
-  id 'com.adjectivemonk2.kotlin.multiplatform'
-  id 'com.android.library'
+  id 'com.adjectivemonk2.kotlin.multiplatform.android'
+  id 'com.adjectivemonk2.kotlin.multiplatform.jvm'
   id 'app.cash.zipline'
 }
 
 archivesBaseName = 'launcher'
 
 kotlin {
-
-  jvm {
-    jvmToolchain(17)
-  }
-
-  androidTarget()
-
   sourceSets {
     commonMain {
       dependencies {
@@ -31,18 +24,5 @@ android {
   namespace "com.adjectivemonk2.museum.launcher"
   buildFeatures {
     resValues false
-  }
-
-  compileOptions {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
-  }
-
-  compileSdkVersion buildConfig.compileSdk
-
-  defaultConfig {
-    minSdkVersion buildConfig.minSdk
-    targetSdkVersion buildConfig.targetSdk
-    consumerProguardFiles "consumer-rules.pro"
   }
 }

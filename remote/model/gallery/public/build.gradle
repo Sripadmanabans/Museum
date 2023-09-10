@@ -1,19 +1,12 @@
 plugins {
-  id 'com.adjectivemonk2.kotlin.multiplatform'
+  id 'com.adjectivemonk2.kotlin.multiplatform.js'
+  id 'com.adjectivemonk2.kotlin.multiplatform.jvm'
   id 'org.jetbrains.kotlin.plugin.serialization'
 }
 
 archivesBaseName = 'remote-model-gallery-public'
 
 kotlin {
-  jvm {
-    jvmToolchain(17)
-  }
-
-  js(IR) {
-    browser()
-  }
-
   sourceSets {
     commonMain {
       dependencies {
