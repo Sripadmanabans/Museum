@@ -2,14 +2,12 @@ import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
 
 plugins {
   id 'com.adjectivemonk2.kotlin.multiplatform'
+  id 'com.adjectivemonk2.kotlin.multiplatform.jvm'
   id 'org.jetbrains.kotlin.plugin.serialization'
   id 'app.cash.zipline'
 }
 
 kotlin {
-  jvm {
-    jvmToolchain(17)
-  }
 
   js(IR) {
     // The name of the JS module which needs to be unique within the repo.

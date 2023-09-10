@@ -1,5 +1,5 @@
 plugins {
-  id "com.adjectivemonk2.android.test"
+  id 'com.adjectivemonk2.android.test'
 }
 
 dependencies {

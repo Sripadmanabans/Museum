@@ -1,8 +1,8 @@
 plugins {
-  id "com.android.application"
-  id "org.jetbrains.kotlin.android"
-  id "com.adjectivemonk2.detekt"
-  id "com.adjectivemonk2.spotless"
+  id 'com.android.application'
+  id 'org.jetbrains.kotlin.android'
+  id 'com.adjectivemonk2.detekt'
+  id 'com.adjectivemonk2.spotless'
 }
 
 android {

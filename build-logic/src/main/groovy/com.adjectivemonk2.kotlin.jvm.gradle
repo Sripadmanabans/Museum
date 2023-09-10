@@ -1,11 +1,12 @@
 plugins {
-  id "org.jetbrains.kotlin.jvm"
-  id "com.adjectivemonk2.detekt"
-  id "com.adjectivemonk2.spotless"
+  id 'org.jetbrains.kotlin.jvm'
+  id 'com.adjectivemonk2.detekt'
+  id 'com.adjectivemonk2.spotless'
 }
 
 kotlin {
   explicitApi()
+  jvmToolchain(17)
 }
 
 tasks.withType(AbstractTestTask).configureEach { task ->
