@@ -6,9 +6,10 @@ import com.adjectivemonk2.museum.repository.gallery.GalleryRepository
 
 public class GalleryTreehouseUi(
   private val galleryRepository: GalleryRepository,
+  private val galleryUiConverter: GalleryUiConverter,
 ) : TreehouseUi {
   @Composable
   override fun Show() {
-    GalleryUi(galleryRepository)
+    GalleryUi(galleryRepository, galleryUiConverter)
   }
 }

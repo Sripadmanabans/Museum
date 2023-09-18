@@ -7,6 +7,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextOverflow
 import com.adjectivemonk2.museum.widget.Text
 import app.cash.redwood.Modifier as RedwoodModifier
 
@@ -19,7 +20,7 @@ internal class ComposeUiText : Text<@Composable () -> Unit> {
 
   override val value = @Composable {
     val modifier = onClick?.let { Modifier.clickable(onClick = it) } ?: Modifier
-    Text(text = text, modifier = modifier)
+    Text(text = text, modifier = modifier, overflow = TextOverflow.Ellipsis)
   }
 
   override fun text(text: String) {
