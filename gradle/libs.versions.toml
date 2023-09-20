@@ -9,7 +9,7 @@ coil = "2.4.0"
 compose = "1.5.3"
 composeAndroid = "1.6.0-alpha05"
 composeJetbrains = "1.5.1"
-material = "1.2.0-alpha07"
+material = "1.2.0-alpha08"
 
 # Core Components
 coroutine = "1.7.3"
