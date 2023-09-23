@@ -4,6 +4,8 @@ style:
     ignoreAnnotated: [ 'Preview' ]
   ForbiddenComment:
     allowedPatterns: 'https:\/\/github\.com\/.+\/issues\/\d+'
+  MagicNumber:
+    ignoreAnnotation: true
 naming:
   FunctionNaming:
     active: true

@@ -1,10 +1,13 @@
 <schema version="1" type="com.adjectivemonk2.museum.Museum">
-    <widget tag="1" type="com.adjectivemonk2.museum.Text">
-        <property tag="1" name="text" type="kotlin.String"/>
-        <event tag="2" name="onClick" nullable="true"/>
-    </widget>
-    <widget tag="2" type="com.adjectivemonk2.museum.Image">
-        <property tag="1" name="url" type="kotlin.String"/>
-        <event tag="2" name="onClick" nullable="true"/>
-    </widget>
+  <widget tag="1" type="com.adjectivemonk2.museum.Surface">
+    <children tag="1" name="children"/>
+  </widget>
+  <widget tag="2" type="com.adjectivemonk2.museum.Text">
+    <property tag="1" name="text" type="kotlin.String"/>
+    <event tag="2" name="onClick" nullable="true"/>
+  </widget>
+  <widget tag="3" type="com.adjectivemonk2.museum.Image">
+    <property tag="1" name="url" type="kotlin.String"/>
+    <event tag="2" name="onClick" nullable="true"/>
+  </widget>
 </schema>

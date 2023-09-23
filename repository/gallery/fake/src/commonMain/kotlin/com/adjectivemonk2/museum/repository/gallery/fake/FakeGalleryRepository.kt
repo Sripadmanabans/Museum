@@ -22,7 +22,7 @@ public class FakeGalleryRepository : GalleryRepository {
     return flow { emit(galleries.await()) }
   }
 
-  public fun setGalleries(galleries: List<Gallery>?, throwable: Throwable?) {
+  public fun setGalleries(galleries: List<Gallery>? = null, throwable: Throwable? = null) {
     check((galleries != null) xor (throwable != null)) {
       "galleries or throwable should be provided!!"
     }
