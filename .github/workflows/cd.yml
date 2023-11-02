@@ -15,7 +15,6 @@ env:
   ORG_GRADLE_PROJECT_MUSEUM_STORE_PASSWORD: ${{ secrets.ORG_GRADLE_PROJECT_MUSEUM_STORE_PASSWORD }}
   ORG_GRADLE_PROJECT_MUSEUM_CLIENT_ID: ${{ secrets.ORG_GRADLE_PROJECT_MUSEUM_CLIENT_ID }}
   GRADLE_OPTS: "-Dorg.gradle.jvmargs=-Xmx6g -Dorg.gradle.daemon=false -Dkotlin.incremental=false"
-  ANDROID_EMULATOR_WAIT_TIME_BEFORE_KILL: 60
 
 jobs:
   build:
@@ -109,7 +108,6 @@ jobs:
       - name: Instrumentation Tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          emulator-boot-timeout: 20000
           api-level: ${{ matrix.api-level }}
           target: ${{ matrix.target }}
           arch: ${{ matrix.arch }}
