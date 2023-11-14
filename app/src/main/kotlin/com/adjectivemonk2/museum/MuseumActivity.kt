@@ -27,7 +27,7 @@ import com.adjectivemonk2.museum.presenter.treehouse.gallery.GalleryPresenter
 import com.adjectivemonk2.museum.remote.core.impl.RealHostApi
 import com.adjectivemonk2.museum.ui.ComposeMuseumWidgetFactory
 import com.adjectivemonk2.museum.ui.theme.MuseumTheme
-import com.adjectivemonk2.museum.widget.MuseumProtocolNodeFactory
+import com.adjectivemonk2.museum.widget.MuseumProtocolFactory
 import com.adjectivemonk2.museum.widget.MuseumWidgetFactories
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.cio.CIO
@@ -60,7 +60,7 @@ public class MuseumActivity : ComponentActivity() {
     val treehouseContentSource = TreehouseContentSource(GalleryPresenter::launch)
 
     val widgetSystem = TreehouseView.WidgetSystem { json, protocolMismatchHandler ->
-      MuseumProtocolNodeFactory(
+      MuseumProtocolFactory(
         provider = MuseumWidgetFactories(
           Museum = ComposeMuseumWidgetFactory(),
           RedwoodLayout = ComposeUiRedwoodLayoutWidgetFactory(),
@@ -93,7 +93,7 @@ public class MuseumActivity : ComponentActivity() {
       context = applicationContext,
       httpClient = httpClient,
       manifestVerifier = ManifestVerifier.NO_SIGNATURE_CHECKS,
-      eventListener = appEventListener,
+      eventListenerFactory = appEventListener,
     )
 
     val manifestUrlFlow = flowOf("http://10.0.2.2:8080/manifest.zipline.json")
@@ -142,23 +142,15 @@ public class MuseumActivity : ComponentActivity() {
   }
 }
 
-private val appEventListener: EventListener = object : EventListener() {
-  override fun codeLoadFailed(
-    app: TreehouseApp<*>,
-    manifestUrl: String?,
-    exception: Exception,
-    startValue: Any?,
-  ) {
-    KermitLogger.w(exception) { "codeLoadFailed" }
-  }
+private val appEventListener = EventListener.Factory { _, _ ->
+  object : EventListener() {
 
-  override fun codeLoadSuccess(
-    app: TreehouseApp<*>,
-    manifestUrl: String?,
-    manifest: ZiplineManifest,
-    zipline: Zipline,
-    startValue: Any?,
-  ) {
-    KermitLogger.i { "codeLoadSuccess" }
+    override fun codeLoadFailed(exception: Exception, startValue: Any?) {
+      KermitLogger.w(exception) { "codeLoadFailed" }
+    }
+
+    override fun codeLoadSuccess(manifest: ZiplineManifest, zipline: Zipline, startValue: Any?) {
+      KermitLogger.i { "codeLoadSuccess" }
+    }
   }
 }

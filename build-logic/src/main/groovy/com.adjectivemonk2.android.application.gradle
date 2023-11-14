@@ -53,6 +53,7 @@ android {
     freeCompilerArgs += "-XXLanguage:+NewInference"
     freeCompilerArgs += "-progressive"
     freeCompilerArgs += "-Xexplicit-api=strict"
+    freeCompilerArgs += "-Xsuppress-version-warnings"
     if (project.findProperty("museum.enableComposeCompilerReports") == "true") {
       Provider<Directory> output = layout.buildDirectory.dir("compose_metrics")
       def filePath = output.get().asFile.absolutePath

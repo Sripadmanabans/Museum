@@ -11,15 +11,7 @@
         "androidx.compose.compiler",
         "app.cash.zipline",
         "org.jetbrains.compose.compiler",
-        "org.jetbrains.kotlin:kotlin",
-      ],
-    },
-    {
-      // ktlint breaks their API constantly and regularly needs a Spotless update to work.
-      "groupName": "Spotless/ktlint",
-      "matchPackagePrefixes": [
-        "com.diffplug.spotless",
-        "com.pinterest:ktlint",
+        "org.jetbrains.kotlin"
       ],
     }
   ],

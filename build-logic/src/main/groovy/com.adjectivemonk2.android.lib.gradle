@@ -38,6 +38,7 @@ android {
     freeCompilerArgs += "-XXLanguage:+NewInference"
     freeCompilerArgs += "-progressive"
     freeCompilerArgs += "-Xexplicit-api=strict"
+    freeCompilerArgs += "-Xsuppress-version-warnings"
   }
 
   packagingOptions {
