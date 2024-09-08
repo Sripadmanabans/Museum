@@ -33,7 +33,7 @@ assertk = "0.27.0"
 junit5 = "5.10.0"
 
 # Code Health Components
-detekt = "1.23.1"
+detekt = "1.23.7"
 ktlint = "1.0.1"
 spotless = "6.22.0"
 
