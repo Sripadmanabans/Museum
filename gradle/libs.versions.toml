@@ -1,6 +1,6 @@
 [versions]
 # Android Components
-activity = "1.8.0"
+activity = "1.9.3"
 androidBuild = "8.1.2"
 core = "1.12.0"
 
